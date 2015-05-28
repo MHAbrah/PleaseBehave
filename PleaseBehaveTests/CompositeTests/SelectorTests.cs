@@ -1,34 +1,32 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using PleaseBehave;
 using PleaseBehave.Composites;
-using PleaseBehave.Fakes;
+using Xunit;
 
 namespace PleaseBehaveTests.CompositeTests
 {
-    [TestClass]
     public class SelectorTests
     {
-        [TestMethod]
+        [Fact]
         public void SelectorUpdateSuccessSuccessSuccessTest()
         {
             // Arrange
+            var successNode1 = Substitute.For<Node>();
+            var successNode2 = Substitute.For<Node>();
+            var successNode3 = Substitute.For<Node>();
+
+            successNode1.Update().Returns(NodeStatus.Success);
+            successNode2.Update().Returns(NodeStatus.Success);
+            successNode3.Update().Returns(NodeStatus.Success);
+
             var selector = new Selector
             {
                 Children = new Collection<Node>
                 {
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
+                    successNode1,
+                    successNode2,
+                    successNode3
                 }
             };
 
@@ -36,30 +34,29 @@ namespace PleaseBehaveTests.CompositeTests
             var result = selector.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
-            Assert.AreEqual(0, selector.Currentchild);
+            Assert.Equal(NodeStatus.Success, result);
+            Assert.Equal(0, selector.Currentchild);
         }
 
-        [TestMethod]
+        [Fact]
         public void SelectorUpdateSuccessFailureSuccessTest()
         {
             // Arrange
+            var node1 = Substitute.For<Node>();
+            var node2 = Substitute.For<Node>();
+            var node3 = Substitute.For<Node>();
+
+            node1.Update().Returns(NodeStatus.Success);
+            node2.Update().Returns(NodeStatus.Failure);
+            node3.Update().Returns(NodeStatus.Success);
+            
             var selector = new Selector
             {
                 Children = new Collection<Node>
                 {
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Failure
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
+                    node1,
+                    node2,
+                    node3
                 }
             };
 
@@ -67,30 +64,29 @@ namespace PleaseBehaveTests.CompositeTests
             var result = selector.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
-            Assert.AreEqual(0, selector.Currentchild);
+            Assert.Equal(NodeStatus.Success, result);
+            Assert.Equal(0, selector.Currentchild);
         }
 
-        [TestMethod]
+        [Fact]
         public void SelectorUpdateSuccessSuccessFailureTest()
         {
             // Arrange
+            var node1 = Substitute.For<Node>();
+            var node2 = Substitute.For<Node>();
+            var node3 = Substitute.For<Node>();
+
+            node1.Update().Returns(NodeStatus.Success);
+            node2.Update().Returns(NodeStatus.Success);
+            node3.Update().Returns(NodeStatus.Failure);
+
             var selector = new Selector
             {
                 Children = new Collection<Node>
                 {
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Success
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Failure
-                    },
+                    node1,
+                    node2,
+                    node3
                 }
             };
 
@@ -98,30 +94,29 @@ namespace PleaseBehaveTests.CompositeTests
             var result = selector.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
-            Assert.AreEqual(0, selector.Currentchild);
+            Assert.Equal(NodeStatus.Success, result);
+            Assert.Equal(0, selector.Currentchild);
         }
 
-        [TestMethod]
+        [Fact]
         public void SelectorUpdateFailureFailureFailureTest()
         {
             // Arrange
+            var node1 = Substitute.For<Node>();
+            var node2 = Substitute.For<Node>();
+            var node3 = Substitute.For<Node>();
+
+            node1.Update().Returns(NodeStatus.Failure);
+            node2.Update().Returns(NodeStatus.Failure);
+            node3.Update().Returns(NodeStatus.Failure);
+
             var selector = new Selector
             {
                 Children = new Collection<Node>
                 {
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Failure
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Failure
-                    },
-                    new StubNode
-                    {
-                        Update01 = () => NodeStatus.Failure
-                    },
+                    node1,
+                    node2,
+                    node3
                 }
             };
 
@@ -129,8 +124,8 @@ namespace PleaseBehaveTests.CompositeTests
             var result = selector.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Failure, result);
-            Assert.AreEqual(0, selector.Currentchild);
+            Assert.Equal(NodeStatus.Failure, result);
+            Assert.Equal(0, selector.Currentchild);
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PleaseBehave;
+﻿using PleaseBehave;
 using PleaseBehave.Leafs;
+using Xunit;
 
 namespace PleaseBehaveTests.LeafTests
 {
-    [TestClass]
     public class ActionTests
     {
         private bool _falseTrue;
 
-        [TestMethod]
+        [Fact]
         public void OneTickActionTest()
         {
             // Arrange
@@ -19,10 +18,10 @@ namespace PleaseBehaveTests.LeafTests
             var result = action.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
+            Assert.Equal(NodeStatus.Success, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void TwoTickActionTest()
         {
             // Arrange
@@ -34,8 +33,8 @@ namespace PleaseBehaveTests.LeafTests
             _falseTrue = false;
 
             // Assert
-            Assert.AreEqual(NodeStatus.Running, result1);
-            Assert.AreEqual(NodeStatus.Success, result2);
+            Assert.Equal(NodeStatus.Running, result1);
+            Assert.Equal(NodeStatus.Success, result2);
         }
 
         private bool ReturnFalseThenTrue()

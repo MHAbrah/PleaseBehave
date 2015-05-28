@@ -1,79 +1,71 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NSubstitute;
 using PleaseBehave;
 using PleaseBehave.Decorators;
-using PleaseBehave.Fakes;
+using Xunit;
 
 namespace PleaseBehaveTests.DecoratorTests
 {
-    [TestClass]
     public class SucceederTests
     {
-        [TestMethod]
+        [Fact]
         public void SucceederUpdateSTest()
         {
             // Arrange
+            var node1 = Substitute.For<Node>();
+            node1.Update().Returns(NodeStatus.Success);
+
             var succeeder = new Succeeder
             {
-                Child = new StubNode
-                {
-                    Update01 = () => NodeStatus.Success
-                }
+                Child = node1
             };
 
             // Act
             var result = succeeder.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
+            Assert.Equal(NodeStatus.Success, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void SucceederUpdateFTest()
         {
             // Arrange
+            var node1 = Substitute.For<Node>();
+            node1.Update().Returns(NodeStatus.Success);
             var succeeder = new Succeeder
             {
-                Child = new StubNode
-                {
-                    Update01 = () => NodeStatus.Failure
-                }
+                Child = node1
             };
 
             // Act
             var result = succeeder.Update();
 
             // Assert
-            Assert.AreEqual(NodeStatus.Success, result);
+            Assert.Equal(NodeStatus.Success, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void SucceederUpdateRunningSuccessTest()
         {
             // Arrange
-            var child1 = new StubNode
-            {
-                Update01 = () => NodeStatus.Running
-            };
-
-            var child2 = new StubNode
-            {
-                Update01 = () => NodeStatus.Success
-            };
+            var node1 = Substitute.For<Node>();
+            node1.Update().Returns(NodeStatus.Running);
+            var node2 = Substitute.For<Node>();
+            node2.Update().Returns(NodeStatus.Success);
 
             var succeeder = new Succeeder
             {
-                Child = child1
+                Child = node1
             };
 
             // Act
             var result1 = succeeder.Update();
-            succeeder.Child = child2;
+            succeeder.Child = node2;
             var result2 = succeeder.Update();
-           
 
             // Assert
-            Assert.AreEqual(NodeStatus.Running, result1);
-            Assert.AreEqual(NodeStatus.Success, result2);
+            Assert.Equal(NodeStatus.Running, result1);
+            Assert.Equal(NodeStatus.Success, result2);
         }
     }
 }
