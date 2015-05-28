@@ -3,7 +3,7 @@
 namespace PleaseBehave.Composites
 {
     /// <summary>
-    /// Composite that checks the statuses of each of it's children. Returns success if all children succeed.
+    /// Composite that checks the statuses of each of its children. Returns success if all children succeed.
     /// </summary>
     public class Sequence : CompositeNode
     {

@@ -1,9 +1,8 @@
 ﻿namespace PleaseBehave.Decorators
 {
     /// <summary>
-    /// Repeatedly updates it's child as long as Repetions are above 0 or LoopForever is true.
+    /// Repeatedly updates its child as long as Repetions are above 0 or LoopForever is true.
     /// </summary>
-    // TODO: Consider the word "repetitions". Does it mean that 1 repetition is 2 steps or 1?
     public class Repeater : DecoratorNode
     {
         private uint? _repetitions;

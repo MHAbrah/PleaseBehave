@@ -2,6 +2,9 @@
 
 namespace PleaseBehave.Leafs
 {
+    /// <summary>
+    /// A Node that does some function until it completes.
+    /// </summary>
     public class Act : Node, IResetable
     {
         protected bool Initialized = false;
