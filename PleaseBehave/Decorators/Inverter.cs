@@ -3,7 +3,7 @@
 namespace PleaseBehave.Decorators
 {
     /// <summary>
-    /// Inverter takes it's child's NodeStatus and converts Failure to Success and vice versa. 
+    /// Inverter takes its child's NodeStatus and converts Failure to Success and vice versa. 
     /// NodeStatus.Running is not converted.
     /// </summary>
     class Inverter : DecoratorNode

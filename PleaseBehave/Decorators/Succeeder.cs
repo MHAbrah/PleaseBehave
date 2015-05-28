@@ -8,7 +8,7 @@ namespace PleaseBehave.Decorators
     public class Succeeder : DecoratorNode
     {
         /// <summary>
-        /// Treats child's failure as success.
+        /// Treats its child's failure as success.
         /// </summary>
         /// <returns>NodeStatus.Success on child success, same with child failure.
         /// Running if child returns running.</returns>
