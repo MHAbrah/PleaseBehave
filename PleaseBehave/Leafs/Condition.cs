@@ -2,6 +2,9 @@
 
 namespace PleaseBehave.Leafs
 {
+    /// <summary>
+    /// Calls a Func and succeeds if the Func returns true, otherwise this node fails.
+    /// </summary>
     public class Condition : Node
     {
         private readonly Func<bool> _conditionFunc;

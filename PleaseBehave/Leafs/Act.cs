@@ -3,7 +3,7 @@
 namespace PleaseBehave.Leafs
 {
     /// <summary>
-    /// A Node that does some function until it completes.
+    /// A Node that calls a function on each tick until it completes (by returning true).
     /// </summary>
     public class Act : Node, IResetable
     {
