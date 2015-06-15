@@ -1,6 +1,2 @@
 language: csharp
 solution: PleaseBehave.sln
-
-env:
- global:
-  - EnableNuGetPackageRestore=true 
