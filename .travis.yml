@@ -1,5 +1,8 @@
 language: csharp
 solution: PleaseBehave.sln
+install:
+  - nuget restore PleaseBehave.sln
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release PleaseBehave.sln
-  - mono ./packages/xunit.runner.console.2.1.0-beta2-build2981/tools/xunit.console.exe ./PleaseBehaveTests/bin/Release/PleaseBehaveTests.dll
+  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./PleaseBehaveTests/bin/Release/PleaseBehaveTests.dll
