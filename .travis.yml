@@ -1,2 +1,5 @@
 language: csharp
 solution: PleaseBehave.sln
+script:
+  - xbuild /p:Configuration=Release PleaseBehave.sln
+  - mono ./packages/xunit.runner.console.2.1.0-beta2-build2981/tools/xunit.console.exe ./PleaseBehaveTests/bin/Release/PleaseBehaveTests.dll

@@ -11,7 +11,7 @@
     <AssemblyName>PleaseBehave</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>0f1f0aa7</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>2a3f4031</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,9 +50,6 @@
     <Compile Include="IResetable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Composites\Sequence.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
