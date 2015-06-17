@@ -1,6 +1,8 @@
+# Build status
+
 [![Build Status](https://travis-ci.org/MHAbrah/PleaseBehave.svg?branch=master)](https://travis-ci.org/MHAbrah/PleaseBehave)
 
-# PleaseBehave
+# PleaseBehave description
 
 Please Behave is a simple behavior tree implementation.
 
